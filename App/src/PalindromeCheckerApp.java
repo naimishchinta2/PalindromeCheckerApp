@@ -5,30 +5,35 @@ public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         Stack<Character> stack = new Stack<>();
 
         System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
+        String str = sc.nextLine();
 
         // Push characters into stack
-        for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+        for (int i = 0; i < str.length(); i++) {
+            stack.push(str.charAt(i));
         }
 
-        // Pop characters and build reversed string
-        String reversed = "";
-        while (!stack.isEmpty()) {
-            reversed = reversed + stack.pop();
+        boolean isPalindrome = true;
+
+        // Pop characters and compare with original string
+        for (int i = 0; i < str.length(); i++) {
+            char ch = stack.pop();
+            if (str.charAt(i) != ch) {
+                isPalindrome = false;
+                break;
+            }
         }
 
-        // Compare original and reversed string
-        if (input.equals(reversed)) {
+        // Print result
+        if (isPalindrome) {
             System.out.println("The given string is a Palindrome.");
         } else {
-            System.out.println("The given string is NOT a Palindrome.");
+            System.out.println("The given string is not a Palindrome.");
         }
 
-        scanner.close();
+        sc.close();
     }
 }
